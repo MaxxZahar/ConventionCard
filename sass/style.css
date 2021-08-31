@@ -1,0 +1,84 @@
+.wrapper {
+  margin: 3vw 3vw 0 3vw;
+  background-color: #464646;
+}
+
+.card {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card__bid {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 5%;
+  text-align: center;
+  line-height: 3vw;
+  cursor: pointer;
+}
+
+.card__bid_alert {
+  border: 2px solid red;
+}
+
+.card__description {
+  width: 90%;
+  color: white;
+  padding-left: 3%;
+  padding-right: 1%;
+  line-height: 3vw;
+}
+
+.card__priority {
+  width: 5%;
+  line-height: 3vw;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.card__priority[data-value="0"] {
+  background-color: #ec0a0a;
+}
+
+.card__priority[data-value="1"] {
+  background-color: #f5f521;
+}
+
+.card__priority[data-value="2"] {
+  background-color: #1cfa1c;
+}
+
+.card_child-list {
+  border-top: 1px solid white;
+  border-bottom: 1px solid #fff;
+}
+
+.clubs {
+  color: #6cce6c;
+}
+
+.diamonds {
+  color: #5ec9fa;
+}
+
+.hearts {
+  color: #fd6b83;
+}
+
+.spades {
+  color: #f6ffc2;
+}
+
+.notrump {
+  color: #fda027;
+}
+/*# sourceMappingURL=style.css.map */

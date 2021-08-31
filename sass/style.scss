@@ -1,0 +1,75 @@
+$clubs: rgb(108, 206, 108);
+$diamonds: rgb(94, 201, 250);
+$hearts: rgb(253, 107, 131);
+$spades: rgb(246, 255, 194);
+$notrump: rgb(253, 160, 39);
+$priority0: rgb(236, 10, 10);
+$priority1: rgb(245, 245, 33);
+$priority2: rgb(28, 250, 28);
+$basicLineHeight: 3vw;
+.wrapper{
+    margin: 3vw 3vw 0 3vw;
+    background-color: rgb(70, 70, 70);
+}
+.card{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    &__item{
+        display: flex;
+    }
+    &__bid{
+        box-sizing: border-box;
+        width: 5%;
+        text-align: center;
+        line-height: $basicLineHeight;
+        // border-right: 1px solid white;
+        cursor: pointer;
+        &_alert{
+            border: 2px solid red;
+        }
+    }
+    &__description{
+        width: 90%;
+        color: white;
+        padding-left: 3%;
+        padding-right: 1%;
+        line-height: $basicLineHeight;
+    }
+    &__priority{
+        width: 5%;
+        line-height: $basicLineHeight;
+        text-align: center;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 1.5em;
+        &[data-value="0"]{
+            background-color: $priority0;
+        }
+        &[data-value="1"]{
+            background-color: $priority1;
+        }
+        &[data-value="2"]{
+            background-color: $priority2;
+        }
+    }
+    &_child-list{
+        border-top: 1px solid white;
+        border-bottom: 1px solid #fff;
+    }
+}
+.clubs{
+    color: $clubs;
+}
+.diamonds{
+    color: $diamonds;
+}
+.hearts{
+    color: $hearts;
+}
+.spades{
+    color: $spades;
+}
+.notrump{
+    color: $notrump;
+}
