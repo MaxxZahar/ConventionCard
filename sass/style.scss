@@ -28,6 +28,12 @@ $basicLineHeight: 3vw;
         &_alert{
             border: 2px solid red;
         }
+        &_active{
+            background-color: rgb(126, 126, 126);
+        }
+        &_last{
+            cursor: auto;
+        }
     }
     &__description{
         width: 90%;

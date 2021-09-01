@@ -28,6 +28,14 @@
   border: 2px solid red;
 }
 
+.card__bid_active {
+  background-color: #7e7e7e;
+}
+
+.card__bid_last {
+  cursor: auto;
+}
+
 .card__description {
   width: 90%;
   color: white;
