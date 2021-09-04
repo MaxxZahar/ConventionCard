@@ -7,16 +7,42 @@ $priority0: rgb(236, 10, 10);
 $priority1: rgb(245, 245, 33);
 $priority2: rgb(28, 250, 28);
 $basicLineHeight: 3vw;
+@mixin animate($animation, $duration, $method){
+    animation: $animation $duration $method;
+}
+@mixin keyframes($name){
+    @keyframes #{$name}{
+        @content;
+    }
+}
 .wrapper{
     margin: 3vw 3vw 0 3vw;
-    background-color: rgb(70, 70, 70);
+    background-color: white;
 }
 .card{
     list-style-type: none;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    transform-origin: right;
+    @include keyframes(open-new-card){
+        0%{
+            transform: scaleX(0);
+        }
+        100%{
+            transform: scaleX(1);
+        }
+    }
+    @include animate(open-new-card, 1000ms, linear);
     &__item{
         display: flex;
+        max-width: 100%;
+        background-color: rgb(70,70,70);
+        transform: translateX(0);
+        transition: transform 750ms ease-in-out;
+        &_active{
+            transform: translateX(4.8%);
+        }
     }
     &__bid{
         box-sizing: border-box;
@@ -28,9 +54,9 @@ $basicLineHeight: 3vw;
         &_alert{
             border: 2px solid red;
         }
-        &_active{
-            background-color: rgb(126, 126, 126);
-        }
+        // &_active{
+        //     background-color: rgb(126, 126, 126);
+        // }
         &_last{
             cursor: auto;
         }

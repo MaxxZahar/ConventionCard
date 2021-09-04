@@ -7,7 +7,8 @@ function openList(id){
     console.log('open', id);
     const template = document.getElementById(id.slice(0, -3));
     const element = document.getElementById(id);
-    element.classList.add('card__bid_active');
+    // element.classList.add('card__bid_active');
+    element.parentNode.classList.add('card__item_active');
     element.parentNode.insertAdjacentElement('afterend', template.content.firstElementChild.cloneNode(true));
     element.addEventListener('click', function(){closeList(id)}, {once: true});
     addListeners(element.parentNode);
@@ -16,7 +17,8 @@ function openList(id){
 function closeList(id){
     console.log('close', id);
     const element = document.getElementById(id);
-    element.classList.remove('card__bid_active');
+    // element.classList.remove('card__bid_active');
+    element.parentNode.classList.remove('card__item_active');
     element.parentNode.nextSibling.remove();
     element.addEventListener('click', function(){openList(id)}, {once: true});
 }
