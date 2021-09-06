@@ -3,6 +3,7 @@
 const wrapper = document.querySelector('.wrapper');
 addListeners(wrapper, true);
 document.querySelector('.header__sequence').addEventListener('dblclick', cleanHeader);
+let cHCInterval = setInterval(changeHeaderColor, 2000);
 
 function openList(id){
     console.log('open', id);
@@ -60,6 +61,7 @@ function removeBidFromHeader(bid){
     const index = header.innerHTML.indexOf(bid);
     if (index == 0){
         header.innerHTML = 'Sequence';
+        cHCInterval = setInterval(changeHeaderColor, 2000);
     } else if (index > 0){
         header.innerHTML = header.innerHTML.substring(0, index - 1);
     }
@@ -68,4 +70,21 @@ function removeBidFromHeader(bid){
 function cleanHeader(){
     const header = document.querySelector('.header__sequence');
     header.innerHTML = 'Sequence';
+    cHCInterval = setInterval(changeHeaderColor, 2000);
+}
+
+function changeHeaderColor(){
+    const colors = ['rgb(108, 206, 108)', 'rgb(94, 201, 250)', 'rgb(253, 107, 131)', 'rgb(70,70,70)', 'rgb(253, 160, 39)'];
+    const header = document.querySelector('.header__sequence');
+    const index = Number(header.dataset.state);
+    if (header.innerHTML == 'Sequence'){
+        header.style.color = colors[index];
+        if (index < colors.length - 1){
+            header.dataset.state = index + 1;
+        } else {
+            header.dataset.state = 0;
+        }
+    } else {
+        clearInterval(cHCInterval);
+    }
 }
