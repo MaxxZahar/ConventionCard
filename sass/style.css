@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap");
+header {
+  margin: 3vw 3vw 0;
+}
+
+.header__sequence {
+  text-align: center;
+  font-family: "WindSong", cursive;
+  font-size: 4vw;
+}
+
 .wrapper {
   margin: 3vw 3vw 0 3vw;
   background-color: white;
@@ -120,6 +131,10 @@
 
 .spades {
   color: #f6ffc2;
+}
+
+.spades_white {
+  color: #464646;
 }
 
 .notrump {

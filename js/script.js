@@ -2,6 +2,7 @@
 // c1.addEventListener('click', function(){openList(c1.id)}, {once: true});
 const wrapper = document.querySelector('.wrapper');
 addListeners(wrapper, true);
+document.querySelector('.header__sequence').addEventListener('dblclick', cleanHeader);
 
 function openList(id){
     console.log('open', id);
@@ -9,6 +10,7 @@ function openList(id){
     const element = document.getElementById(id);
     // element.classList.add('card__bid_active');
     element.parentNode.classList.add('card__item_active');
+    addBidToHeader(element.innerHTML);
     element.parentNode.insertAdjacentElement('afterend', template.content.firstElementChild.cloneNode(true));
     element.addEventListener('click', function(){closeList(id)}, {once: true});
     addListeners(element.parentNode);
@@ -17,6 +19,7 @@ function openList(id){
 function closeList(id){
     console.log('close', id);
     const element = document.getElementById(id);
+    removeBidFromHeader(element.innerHTML);
     // element.classList.remove('card__bid_active');
     element.parentNode.classList.remove('card__item_active');
     element.parentNode.nextSibling.remove();
@@ -37,4 +40,32 @@ function addListeners(element, root = false){
             items[i].firstElementChild.addEventListener('click', function(){openList(items[i].firstElementChild.id)}, {once: true});
         }
     }
+}
+
+function addBidToHeader(bid){
+    const header = document.querySelector('.header__sequence');
+    if (header.innerHTML == 'Sequence'){
+        header.innerHTML = '';
+    }
+    header.innerHTML += bid + ' - ';
+    const spades = header.querySelector('.spades');
+    if (spades){
+        spades.classList.remove('spades');
+        spades.classList.add('spades_white');
+    }
+}
+
+function removeBidFromHeader(bid){
+    const header = document.querySelector('.header__sequence');
+    const index = header.innerHTML.indexOf(bid);
+    if (index == 0){
+        header.innerHTML = 'Sequence';
+    } else if (index > 0){
+        header.innerHTML = header.innerHTML.substring(0, index - 1);
+    }
+}
+
+function cleanHeader(){
+    const header = document.querySelector('.header__sequence');
+    header.innerHTML = 'Sequence';
 }
