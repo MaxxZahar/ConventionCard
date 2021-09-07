@@ -129,15 +129,23 @@ h1 {
 }
 
 .card__priority[data-value="0"] {
-  background-color: #ec0a0a;
+  background-color: #fda027;
 }
 
 .card__priority[data-value="1"] {
-  background-color: #f5f521;
+  background-color: #f6ffc2;
 }
 
 .card__priority[data-value="2"] {
-  background-color: #1cfa1c;
+  background-color: #fd6b83;
+}
+
+.card__priority[data-value="3"] {
+  background-color: #5ec9fa;
+}
+
+.card__priority[data-value="4"] {
+  background-color: #6cce6c;
 }
 
 .card_child-list {

@@ -4,9 +4,9 @@ $hearts: rgb(253, 107, 131);
 $spades: rgb(246, 255, 194);
 $whiteSpades: rgb(70,70,70);
 $notrump: rgb(253, 160, 39);
-$priority0: rgb(236, 10, 10);
-$priority1: rgb(245, 245, 33);
-$priority2: rgb(28, 250, 28);
+// $priority0: rgb(236, 10, 10);
+// $priority1: rgb(245, 245, 33);
+// $priority2: rgb(28, 250, 28);
 $basicLineHeight: 3vw;
 $basicFontSize: $basicLineHeight/2;
 // @import url('https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap');
@@ -113,13 +113,19 @@ h1{
         font-weight: bold;
         font-size: 2vw;
         &[data-value="0"]{
-            background-color: $priority0;
+            background-color: $notrump;
         }
         &[data-value="1"]{
-            background-color: $priority1;
+            background-color: $spades;
         }
         &[data-value="2"]{
-            background-color: $priority2;
+            background-color: $hearts;
+        }
+        &[data-value="3"]{
+            background-color: $diamonds;
+        }
+        &[data-value="4"]{
+            background-color: $clubs;
         }
     }
     &_child-list{
