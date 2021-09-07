@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Allison&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 header {
   margin: 3vw 3vw 0;
@@ -24,7 +24,7 @@ h1 {
 
 .header__sequence {
   text-align: center;
-  font-family: "WindSong", cursive;
+  font-family: "Allison", cursive;
   font-size: 4vw;
   color: #fda027;
 }

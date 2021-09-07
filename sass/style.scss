@@ -9,7 +9,10 @@ $priority1: rgb(245, 245, 33);
 $priority2: rgb(28, 250, 28);
 $basicLineHeight: 3vw;
 $basicFontSize: $basicLineHeight/2;
-@import url('https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allison&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @mixin animate($animation, $duration, $method){
     animation: $animation $duration $method;
@@ -39,7 +42,7 @@ h1{
 .header{
     &__sequence{
         text-align: center;
-        font-family: "WindSong", cursive;
+        font-family: "Allison", cursive;
         font-size: 4vw;
         color: $notrump;
     }
