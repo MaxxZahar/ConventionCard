@@ -1,6 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 header {
   margin: 3vw 3vw 0;
+}
+
+footer {
+  margin: 3vw 3vw 1vw;
+}
+
+h1 {
+  font-family: "VT323", monospace;
+  color: white;
+  text-align: center;
+  font-size: 5vw;
+  text-transform: uppercase;
+  letter-spacing: 5vw;
+  line-height: 5vw;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
 }
 
 .header__sequence {
@@ -73,11 +92,18 @@ header {
   width: 5%;
   text-align: center;
   line-height: 3vw;
+  font-size: 1.5vw;
   cursor: pointer;
 }
 
 .card__bid_alert {
   border: 2px solid red;
+}
+
+@media (max-width: 550px) {
+  .card__bid_alert {
+    border-width: 1px;
+  }
 }
 
 .card__bid_last {
@@ -90,6 +116,7 @@ header {
   padding-left: 3%;
   padding-right: 1%;
   line-height: 3vw;
+  font-size: 1.5vw;
 }
 
 .card__priority {
@@ -98,7 +125,7 @@ header {
   text-align: center;
   font-style: italic;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 2vw;
 }
 
 .card__priority[data-value="0"] {
@@ -116,6 +143,21 @@ header {
 .card_child-list {
   border-top: 1px solid white;
   border-bottom: 1px solid #fff;
+}
+
+.footer {
+  background-color: #464646;
+  padding: 0.05vw 0;
+  position: relative;
+}
+
+.footer::after {
+  position: absolute;
+  content: "MaZa, 2021";
+  color: white;
+  right: 0.5vw;
+  bottom: 0.5vw;
+  font-size: 0.6vw;
 }
 
 .clubs {
