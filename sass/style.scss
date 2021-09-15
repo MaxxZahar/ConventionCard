@@ -146,6 +146,23 @@ h1{
         font-size: 0.6vw;
     }
 }
+.upbutton{
+    position: fixed;
+    top: 50%;
+    right: 0.3vw;
+    border-radius: 50%;
+    height: 3vw;
+    width: 3vw;
+    background-color: white;
+    border: 3px solid $notrump;
+    a{
+        text-decoration: none;
+        color: $notrump;
+        font-family: "Allison", cursive;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+}
 .clubs{
     color: $clubs;
 }
