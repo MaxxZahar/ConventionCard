@@ -162,6 +162,21 @@ h1{
         font-weight: bold;
         font-size: 1.5rem;
     }
+    &:active{
+        @include keyframes(click-up-button){
+            50%{
+                transform: rotateY(180deg);
+                background-color: $notrump;
+                color: white;
+            }
+            100%{
+                transform: rotateY(360deg);
+                background-color: white;
+                color: $notrump;
+            }
+        }
+        @include animate(click-up-button, 250ms, linear);
+    }
 }
 .clubs{
     color: $clubs;

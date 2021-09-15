@@ -187,6 +187,41 @@ h1 {
   font-size: 1.5rem;
 }
 
+.upbutton:active {
+  -webkit-animation: click-up-button 250ms linear;
+          animation: click-up-button 250ms linear;
+}
+
+@-webkit-keyframes click-up-button {
+  50% {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    background-color: #fda027;
+    color: white;
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+    background-color: white;
+    color: #fda027;
+  }
+}
+
+@keyframes click-up-button {
+  50% {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    background-color: #fda027;
+    color: white;
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+    background-color: white;
+    color: #fda027;
+  }
+}
+
 .clubs {
   color: #6cce6c;
 }
