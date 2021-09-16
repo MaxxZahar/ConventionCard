@@ -7,6 +7,16 @@ let cHCInterval = setInterval(changeHeaderColor, 2000);
 
 function openList(id){
     console.log('open', id);
+    const getData = new XMLHttpRequest();
+    getData.open("GET", "../php/getdata.php?bid=" + id.slice(0, -3));
+    getData.send();
+    getData.onload = function(){
+        const response = getData.response;
+        console.log(response);
+    }
+    getData.onerror = function(){
+        console.log('Something went wrong!');
+    }
     const template = document.getElementById(id.slice(0, -3));
     const element = document.getElementById(id);
     // element.classList.add('card__bid_active');
