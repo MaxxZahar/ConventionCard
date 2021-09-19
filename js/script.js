@@ -9,22 +9,25 @@ function openList(id){
     console.log('open', id);
     const getData = new XMLHttpRequest();
     getData.open("GET", "../php/getdata.php?bid=" + id.slice(0, -3));
+    getData.responseType = 'json';
     getData.send();
     getData.onload = function(){
-        const response = getData.response;
+        let response = getData.response;
+        response = response.filter(obj => obj.id.startsWith(id.slice(0, -3)));
         console.log(response);
+        createTemplate(response, id.slice(0, -3));
+        const template = document.getElementById(id.slice(0, -3));
+        const element = document.getElementById(id);
+        // element.classList.add('card__bid_active');
+        element.parentNode.classList.add('card__item_active');
+        addBidToHeader(element.innerHTML);
+        element.parentNode.insertAdjacentElement('afterend', template.content.firstElementChild.cloneNode(true));
+        element.addEventListener('click', function(){closeList(id)}, {once: true});
+        addListeners(element.parentNode);
     }
     getData.onerror = function(){
         console.log('Something went wrong!');
     }
-    const template = document.getElementById(id.slice(0, -3));
-    const element = document.getElementById(id);
-    // element.classList.add('card__bid_active');
-    element.parentNode.classList.add('card__item_active');
-    addBidToHeader(element.innerHTML);
-    element.parentNode.insertAdjacentElement('afterend', template.content.firstElementChild.cloneNode(true));
-    element.addEventListener('click', function(){closeList(id)}, {once: true});
-    addListeners(element.parentNode);
 }
 
 function closeList(id){
@@ -96,5 +99,47 @@ function changeHeaderColor(){
         }
     } else {
         clearInterval(cHCInterval);
+    }
+}
+
+function createTemplate(dataArray, bid){
+    if (!document.getElementById(`${bid}`)){
+        document.querySelector('body').insertAdjacentHTML('beforeend', `<template id='${bid}'><ul class='card card_child-list'></ul></template>`);
+        dataArray.map(dataObject => {
+        let classes = 'card__bid';
+        if (dataObject.last === '1'){
+            classes += ' card__bid_last';
+        }
+        if (dataObject.alert === '1'){
+            classes += ' card__bid_alert';
+        }
+        const template = document.getElementById(`${bid}`);
+        template.content.firstChild.insertAdjacentHTML('beforeend', `<li class='card__item'>
+        <div class='${classes}' id='${dataObject.id + 'bid'}'></div>
+        <div class='card__description'>${dataObject.text}</div>
+        <div class='card__priority' data-value='${dataObject.priority}'>${dataObject.forcing}</div>
+        </li>`);
+        template.content.getElementById(`${dataObject.id + 'bid'}`).insertAdjacentHTML('beforeend', displayBid(dataObject.id, bid));
+    });
+    };
+}
+
+function displayBid(currentBid, rootBid){
+    const l = rootBid.length;
+    const cut = currentBid.substring(l);
+    const level = cut[0];
+    switch(cut[1]){
+        case 'c':
+            return `<span class='clubs'>${level}&clubsuit;</span>`;
+        case 'd':
+            return `<span class='diamonds'>${level}&diamondsuit;</span>`;
+        case 'h':
+            return `<span class='hearts'>${level}&heartsuit;</span>`;
+        case 's':
+            return `<span class='spades'>${level}&spadesuit;</span>`;
+        case 'n':
+            return `<span class='notrump'>${level}NT</span>`;
+        default:
+            return 0;
     }
 }

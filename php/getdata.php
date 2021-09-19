@@ -1,10 +1,19 @@
 <?php
 if (isset($_GET['bid'])) {
     $bid = $_GET['bid'];
-    if (file_exists("../data/bidslist.csv")) {
-        $file = fopen("../data/bidslist.csv", 'r');
-        $data = fgetcsv($file, 1000, ";");
-        fclose($file);
-        echo var_dump($data);
-    }
 }
+$file = "../data/bidslist.csv";
+function csvToJSON($fname)
+{
+    if (!($fp = fopen($fname, 'r'))) {
+        die('Can not open the file');
+    }
+    $key = fgetcsv($fp, '1024', ';');
+    $json = array();
+    while ($row = fgetcsv($fp, "1024", ";")) {
+        $json[] = array_combine($key, $row);
+    }
+    fclose($fp);
+    return json_encode($json, JSON_UNESCAPED_UNICODE);
+}
+echo csvToJSON($file);
