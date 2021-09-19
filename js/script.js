@@ -1,33 +1,35 @@
 // const c1 = document.getElementById('1cbid');
 // c1.addEventListener('click', function(){openList(c1.id)}, {once: true});
+let card;
 const wrapper = document.querySelector('.wrapper');
 addListeners(wrapper, true);
 document.querySelector('.header__sequence').addEventListener('dblclick', cleanHeader);
 let cHCInterval = setInterval(changeHeaderColor, 2000);
+// receiveCard();
+fetch('../php/getdata.php')
+    .then(response => response.json())
+    .then(json => sort(json))
+    .then(json => card = json)
+    .catch(err => console.log('Request failed', err));
+
+
+
 
 function openList(id){
     console.log('open', id);
-    const getData = new XMLHttpRequest();
-    getData.open("GET", "../php/getdata.php?bid=" + id.slice(0, -3));
-    getData.responseType = 'json';
-    getData.send();
-    getData.onload = function(){
-        let response = getData.response;
-        response = response.filter(obj => obj.id.startsWith(id.slice(0, -3)));
-        console.log(response);
-        createTemplate(response, id.slice(0, -3));
-        const template = document.getElementById(id.slice(0, -3));
-        const element = document.getElementById(id);
-        // element.classList.add('card__bid_active');
-        element.parentNode.classList.add('card__item_active');
-        addBidToHeader(element.innerHTML);
-        element.parentNode.insertAdjacentElement('afterend', template.content.firstElementChild.cloneNode(true));
-        element.addEventListener('click', function(){closeList(id)}, {once: true});
-        addListeners(element.parentNode);
-    }
-    getData.onerror = function(){
-        console.log('Something went wrong!');
-    }
+    console.log(card);
+    const bid = id.slice(0, -3);
+    let filtered = card.filter(obj => obj.id.startsWith(bid));
+    filtered = filtered.filter(obj => obj.id.length - bid.length > 0 && obj.id.length - bid.length < 4);
+    createTemplate(filtered, bid);
+    const template = document.getElementById(bid);
+    const element = document.getElementById(id);
+    // element.classList.add('card__bid_active');
+    element.parentNode.classList.add('card__item_active');
+    addBidToHeader(element.innerHTML);
+    element.parentNode.insertAdjacentElement('afterend', template.content.firstElementChild.cloneNode(true));
+    element.addEventListener('click', function(){closeList(id)}, {once: true});
+    addListeners(element.parentNode);
 }
 
 function closeList(id){
@@ -143,3 +145,29 @@ function displayBid(currentBid, rootBid){
             return 0;
     }
 }
+
+function sort(systemCard){
+    systemCard.forEach(obj => obj.id = obj.id.replace(/n/g, 'z'));
+    systemCard.sort((a, b) => {
+        if (a.id < b.id) return -1;
+        if (a.id > b.id) return 1;
+        return 0;
+    });
+    systemCard.forEach(obj => obj.id = obj.id.replace(/z/g, 'n'));
+    return systemCard;   
+}
+
+// function receiveCard(){
+//     const getData = new XMLHttpRequest();
+//     getData.open("GET", "../php/getdata.php?bid=" + 'request');
+//     getData.responseType = 'json';
+//     getData.send();
+//     getData.onload = function(){
+//         console.log(getData.response);
+//         card = getData.response;
+//     }
+//     getData.onerror = function(){
+//         alert('Something went wrong!');
+//     }
+// }
+
