@@ -11,6 +11,7 @@ fetch('../php/getdata.php')
     .then(json => sort(json))
     .then(json => card = json)
     .then(() => createStartList())
+    .then(() => loadFooter())
     .catch(err => console.log('Request failed', err));
 
 
@@ -180,6 +181,10 @@ function createStartList(){
         document.getElementById(`${dataObject.id + 'bid'}`).insertAdjacentHTML('beforeend', displayBid(dataObject.id));
     });
     addListeners(wrapper, true);
+}
+
+function loadFooter(){
+    document.querySelector('body').insertAdjacentHTML('beforeend', '<footer><div class="footer"><h1>System card</h1></div></footer>');
 }
 
 // function receiveCard(){
