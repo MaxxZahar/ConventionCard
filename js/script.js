@@ -2,7 +2,7 @@
 // c1.addEventListener('click', function(){openList(c1.id)}, {once: true});
 let card;
 const wrapper = document.querySelector('.wrapper');
-addListeners(wrapper, true);
+// addListeners(wrapper, true);
 document.querySelector('.header__sequence').addEventListener('dblclick', cleanHeader);
 let cHCInterval = setInterval(changeHeaderColor, 2000);
 // receiveCard();
@@ -10,6 +10,7 @@ fetch('../php/getdata.php')
     .then(response => response.json())
     .then(json => sort(json))
     .then(json => card = json)
+    .then(() => createStartList())
     .catch(err => console.log('Request failed', err));
 
 
@@ -52,7 +53,6 @@ function addListeners(element, root = false){
     const items = list.querySelectorAll('li');
     for (let i = 0; i < items.length; i++){
         if (!items[i].firstElementChild.classList.contains('card__bid_last')){
-            console.log(items[i].firstElementChild.id);
             items[i].firstElementChild.addEventListener('click', function(){openList(items[i].firstElementChild.id)}, {once: true});
         }
     }
@@ -107,27 +107,12 @@ function changeHeaderColor(){
 function createTemplate(dataArray, bid){
     if (!document.getElementById(`${bid}`)){
         document.querySelector('body').insertAdjacentHTML('beforeend', `<template id='${bid}'><ul class='card card_child-list'></ul></template>`);
-        dataArray.map(dataObject => {
-        let classes = 'card__bid';
-        if (dataObject.last === '1'){
-            classes += ' card__bid_last';
-        }
-        if (dataObject.alert === '1'){
-            classes += ' card__bid_alert';
-        }
-        const template = document.getElementById(`${bid}`);
-        template.content.firstChild.insertAdjacentHTML('beforeend', `<li class='card__item'>
-        <div class='${classes}' id='${dataObject.id + 'bid'}'></div>
-        <div class='card__description'>${dataObject.text}</div>
-        <div class='card__priority' data-value='${dataObject.priority}'>${dataObject.forcing}</div>
-        </li>`);
-        template.content.getElementById(`${dataObject.id + 'bid'}`).insertAdjacentHTML('beforeend', displayBid(dataObject.id, bid));
-    });
+        dataArray.map(dataObject => createListItem(dataObject, bid));
     };
 }
 
-function displayBid(currentBid, rootBid){
-    const l = rootBid.length;
+function displayBid(currentBid, rootBid = 'root'){
+    const l = rootBid === 'root' ? 0 : rootBid.length;
     const cut = currentBid.substring(l);
     const level = cut[0];
     switch(cut[1]){
@@ -155,6 +140,46 @@ function sort(systemCard){
     });
     systemCard.forEach(obj => obj.id = obj.id.replace(/z/g, 'n'));
     return systemCard;   
+}
+
+function createListItem(dataObject, bid){
+    let classes = 'card__bid';
+    if (dataObject.last === '1'){
+        classes += ' card__bid_last';
+    }
+    if (dataObject.alert === '1'){
+        classes += ' card__bid_alert';
+    }
+    const template = document.getElementById(`${bid}`);
+    template.content.firstChild.insertAdjacentHTML('beforeend', `<li class='card__item'>
+    <div class='${classes}' id='${dataObject.id + 'bid'}'></div>
+    <div class='card__description'>${dataObject.text}</div>
+    <div class='card__priority' data-value='${dataObject.priority}'>${dataObject.forcing}</div>
+    </li>`);
+    template.content.getElementById(`${dataObject.id + 'bid'}`).insertAdjacentHTML('beforeend', displayBid(dataObject.id, bid));
+}
+
+function createStartList(){
+    wrapper.insertAdjacentHTML('beforeend', "<ul class='card' id='rootlist'></ul>");
+    const filtered = card.filter(obj => obj.id.length < 4);
+    console.log(filtered);
+    filtered.map(dataObject => {
+        let classes = 'card__bid';
+        if (dataObject.last === '1'){
+            classes += ' card__bid_last';
+        }
+        if (dataObject.alert === '1'){
+            classes += ' card__bid_alert';
+        }
+        const rootList = document.getElementById('rootlist');
+        rootList.insertAdjacentHTML('beforeend', `<li class='card__item'>
+        <div class='${classes}' id='${dataObject.id + 'bid'}'></div>
+        <div class='card__description'>${dataObject.text}</div>
+        <div class='card__priority' data-value='${dataObject.priority}'>${dataObject.forcing}</div>
+        </li>`);
+        document.getElementById(`${dataObject.id + 'bid'}`).insertAdjacentHTML('beforeend', displayBid(dataObject.id));
+    });
+    addListeners(wrapper, true);
 }
 
 // function receiveCard(){
