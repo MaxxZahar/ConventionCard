@@ -2,10 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 header {
   margin: 3vw 3vw 0;
+  margin-right: max(30px, 3vw);
 }
 
 footer {
   margin: 3vw 3vw 1vw;
+  margin-right: max(30px, 3vw);
 }
 
 h1 {
@@ -32,6 +34,15 @@ h1 {
 .wrapper {
   margin: 3vw 3vw 0 3vw;
   background-color: white;
+  margin-right: max(30px, 3vw);
+}
+
+@media (max-width: 500px) {
+  header,
+  footer,
+  .wrapper {
+    margin-left: 0;
+  }
 }
 
 .card {
@@ -182,12 +193,18 @@ h1 {
 .upbutton {
   position: fixed;
   top: 50%;
-  right: 0.3vw;
+  right: 0.5%;
   border-radius: 50%;
-  height: 3vw;
-  width: 3vw;
-  background-color: white;
-  border: 3px solid #fda027;
+  height: max(30px, 3vw);
+  width: max(30px, 3vw);
+  background-color: transparent;
+  border: 0;
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .upbutton {
+    top: 35%;
+  }
 }
 
 .upbutton a {
@@ -195,7 +212,7 @@ h1 {
   color: #fda027;
   font-family: "Allison", cursive;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: clamp(15px, 2.5vw, 36px);
 }
 
 .upbutton:active {

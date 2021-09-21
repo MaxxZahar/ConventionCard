@@ -34,6 +34,14 @@ h1 {
   background-color: white;
 }
 
+@media (max-width: 500px) {
+  header,
+  footer,
+  .wrapper {
+    margin-left: 0;
+  }
+}
+
 .card {
   list-style-type: none;
   margin: 0;
@@ -187,7 +195,13 @@ h1 {
   height: 3vw;
   width: 3vw;
   background-color: white;
-  border: 3px solid #fda027;
+  border: 0;
+}
+
+@media (max-aspect-ratio: 1) {
+  .upbutton {
+    top: 33%;
+  }
 }
 
 .upbutton a {
