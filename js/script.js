@@ -155,7 +155,7 @@ function createListItem(dataObject, bid){
     template.content.firstChild.insertAdjacentHTML('beforeend', `<li class='card__item'>
     <div class='${classes}' id='${dataObject.id + 'bid'}'></div>
     <div class='card__description'>${dataObject.text}</div>
-    <div class='card__priority' data-value='${dataObject.priority}'>${dataObject.forcing}</div>
+    <div class='card__priority' data-value='${dataObject.priority}'><span class="card__priority-content">${dataObject.forcing}</span></div>
     </li>`);
     template.content.getElementById(`${dataObject.id + 'bid'}`).insertAdjacentHTML('beforeend', displayBid(dataObject.id, bid));
 }
@@ -176,7 +176,7 @@ function createStartList(){
         rootList.insertAdjacentHTML('beforeend', `<li class='card__item'>
         <div class='${classes}' id='${dataObject.id + 'bid'}'></div>
         <div class='card__description'>${dataObject.text}</div>
-        <div class='card__priority' data-value='${dataObject.priority}'>${dataObject.forcing}</div>
+        <div class='card__priority' data-value='${dataObject.priority}'><span class="card__priority-content">${dataObject.forcing}</span></div>
         </li>`);
         document.getElementById(`${dataObject.id + 'bid'}`).insertAdjacentHTML('beforeend', displayBid(dataObject.id));
     });

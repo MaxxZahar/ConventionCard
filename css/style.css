@@ -25,7 +25,7 @@ h1 {
 .header__sequence {
   text-align: center;
   font-family: "Allison", cursive;
-  font-size: 4vw;
+  font-size: clamp(26px ,4vw, 96px);
   color: #fda027;
 }
 
@@ -82,18 +82,18 @@ h1 {
 }
 
 .card__item_active {
-  -webkit-transform: translateX(4.8%);
-          transform: translateX(4.8%);
+  -webkit-transform: translateX(max(19px, 5%));
+          transform: translateX(max(19px, 5%));
 }
 
 .card__bid {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 5%;
+  width: max(30px, 5%);
   text-align: center;
-  line-height: 3vw;
-  font-size: 1.5vw;
-  height: 3vw;
+  line-height: clamp(20px, 3vw, 72px);
+  font-size: clamp(10px, 1.5vw, 36px);
+  height: clamp(20px, 3vw, 72px);
   cursor: pointer;
 }
 
@@ -116,13 +116,13 @@ h1 {
   color: white;
   padding-left: 3%;
   padding-right: 1%;
-  line-height: 3vw;
-  font-size: 1.5vw;
+  line-height: clamp(20px, 3vw, 72px);
+  font-size: clamp(10px, 1.5vw, 36px);
 }
 
 .card__priority {
   position: relative;
-  width: 5%;
+  width: max(20px, 5%);
 }
 
 .card__priority[data-value="0"] {
@@ -147,11 +147,11 @@ h1 {
 
 .card__priority-content {
   position: absolute;
-  line-height: 3vw;
+  /* line-height: 3vw; */
   text-align: center;
   font-style: italic;
   font-weight: bold;
-  font-size: 2vw;
+  font-size: clamp(10px, 2vw, 36px);
   top: 50%;
   left: 50%;
   color: #464646;
@@ -256,4 +256,3 @@ h1 {
 .notrump {
   color: #fda027;
 }
-/*# sourceMappingURL=style.css.map */
