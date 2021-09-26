@@ -8,8 +8,10 @@ let cHCInterval = setInterval(changeHeaderColor, 2000);
 // receiveCard();
 fetch('../php/getdata.php')
     .then(response => response.json())
+    .then(json => cleanWhitespaces(json))
     .then(json => sort(json))
     .then(json => card = json)
+    .then(json => console.log(json))
     .then(() => createStartList())
     .then(() => loadFooter())
     .catch(err => console.log('Request failed', err));
@@ -185,6 +187,17 @@ function createStartList(){
 
 function loadFooter(){
     document.querySelector('body').insertAdjacentHTML('beforeend', '<footer><div class="footer"><h1>System card</h1></div></footer>');
+}
+
+function cleanWhitespaces(json){
+    json.forEach((obj) => {
+        for (let key in obj){
+            if (key !== 'text'){
+                obj[key] = obj[key].replace(/\s/g, "");
+            }
+        }
+    })
+    return json;
 }
 
 // function receiveCard(){
