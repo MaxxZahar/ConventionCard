@@ -1,0 +1,3 @@
+Description: Return back more than one rounds of bids cut off a whitespace and then a hyphen in Sequence title. 
+Example: Push 1NT button, push 2c button, push 2d button, push 2c button back. Repeat such sequence(from push 2c button) one more time.
+Priority: Law 

@@ -1,0 +1,3 @@
+Description: Suit signs look unexpectedly in mobile version (Chrome)  
+Example: Open at my mobile device. Push 2c button, push 2d button.
+Priority: Medium
