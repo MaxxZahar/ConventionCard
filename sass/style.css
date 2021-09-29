@@ -270,4 +270,20 @@ h1 {
 .notrump {
   color: #fda027;
 }
+
+@media screen and (min-width: 1200px) {
+  ::-webkit-scrollbar {
+    width: 2vw;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 100vw;
+    background: -webkit-gradient(linear, left top, left bottom, from(#6cce6c), color-stop(#5ec9fa), color-stop(#fd6b83), to(#fda027));
+    background: linear-gradient(#6cce6c, #5ec9fa, #fd6b83, #fda027);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #f6ffc2;
+    border: 0.25em solid #464646;
+    border-radius: 100vw;
+  }
+}
 /*# sourceMappingURL=style.css.map */

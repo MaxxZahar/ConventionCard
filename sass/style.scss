@@ -215,3 +215,18 @@ footer,
 .notrump{
     color: $notrump;
 }
+
+@media screen and (min-width: 1200px){
+    ::-webkit-scrollbar{
+        width: 2vw;
+    }
+    ::-webkit-scrollbar-track{
+        border-radius: 100vw;
+        background: linear-gradient($clubs, $diamonds, $hearts, $notrump);
+    }
+    ::-webkit-scrollbar-thumb{
+        background-color: $spades;
+        border: 0.25em solid $whiteSpades;
+        border-radius: 100vw;
+    }
+}
