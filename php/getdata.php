@@ -2,7 +2,7 @@
 if (isset($_GET['bid'])) {
     $bid = $_GET['bid'];
 }
-$file = "../data/bidslist.csv";
+$file = "../data/rudenkolist.csv";
 function csvToJSON($fname)
 {
     if (!($fp = fopen($fname, 'r'))) {
